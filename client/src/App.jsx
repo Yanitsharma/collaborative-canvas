@@ -206,6 +206,13 @@ function App() {
         <div className="actions">
             <button onClick={() => socket.emit('undo')}>Undo</button>
             <button onClick={() => socket.emit('redo')}>Redo</button>
+            <button className="wipe-btn" onClick={() => {
+                if(window.confirm("Are you sure you want to wipe the board?")) {
+                    socket.emit('wipe');
+                }
+            }}>
+                🗑️ Clear
+            </button>
         </div>
       </div>
 

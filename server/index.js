@@ -41,6 +41,14 @@ io.on('connection', (socket) => {
         // BROADCAST: Send to everyone ELSE
         socket.broadcast.emit('draw-line', lineData);
     });
+    socket.on('wipe', () => {
+        // 1. Clear the server memory
+        drawingHistory = [];
+        redoStack = []; // Optional: Clear redo stack too if you want a fresh start
+        
+        // 2. Tell EVERYONE to clear their local canvas
+        io.emit('clear-canvas');
+    });
 
     socket.on('undo', () => {
         let indexToRemove = -1;
