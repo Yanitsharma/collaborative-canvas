@@ -1,0 +1,70 @@
+/* Ensure the app takes full height without scrollbars */
+body, html, #root, .App {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #f9f9f9;
+}
+
+/* Make canvas fill the container absolute */
+canvas {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1; /* Behind UI elements */
+}
+
+/* 1. BRUSH CURSOR: The Pencil */
+.cursor-brush {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewport="0 0 24 24" style="fill:black;font-size:24px;"><text y="20">✏️</text></svg>') 0 24, auto;
+}
+
+/* 2. ERASER CURSOR: A White Block with Border */
+/* I created a simple SVG square to represent the eraser */
+.cursor-eraser {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white" stroke="black" stroke-width="1"><rect x="2" y="2" width="20" height="20" rx="4" /></svg>') 12 12, auto;
+}
+
+/* Toolbar & Sidebar styling remains same, just ensure Z-Index is higher than canvas */
+.toolbar, .sidebar, .cursor-container {
+  z-index: 10; 
+}
+
+/* ... (Keep your previous toolbar/sidebar styles below) ... */
+.toolbar {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  padding: 10px 20px;
+  border-radius: 50px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.sidebar {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.cursor-container {
+  position: absolute;
+  pointer-events: none;
+  transition: transform 0.05s linear;
+}
+
+.cursor-icon { transform: translate(-2px, -24px); font-size: 24px; }
+.cursor-label { position: absolute; top: 0; left: 15px; padding: 4px 8px; color: white; border-radius: 4px; font-size: 12px; font-weight: bold; white-space: nowrap; }
