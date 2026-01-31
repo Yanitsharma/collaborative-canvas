@@ -3,7 +3,7 @@ import io from 'socket.io-client';
 import './App.css';
 
 // Initialize Socket outside component
-const socket = io(`http://${window.location.hostname}:3001`);
+const socket = io(`https://collaborative-canvas-uhle.onrender.com/`);
 
 function App() {
   const canvasRef = useRef(null);
